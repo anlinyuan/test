@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div,img,ul,ol,span{
+            margin: 0;
+            padding: 0;
+        }
+        img {
+            vertical-align: top;
+            width:520px;
+            height:300px;
+        }
+        .all{
+            width:520px;
+            height:300px;
+            margin:100px auto;
+            position:relative;
+            border: 1px solid #ccc;
+        }
+        .photo{
+            overflow: hidden;
+            position:relative;
+            width:520px;
+            height:300px;
+        }
+        .photo ul{
+            width:1000%;
+            position:absolute;
+            top:0;
+            left:0;
+            list-style: none;
+        }
+        .photo ul li{
+            float:left;
+        }
+        .focusD{
+            position: absolute;
+            left:0;
+            top:50%;
+            width:520px;
+            height: 30px;
+            padding: 0 10px;
+            box-sizing: border-box;
+            display: none;
+        }
+        .focusD span{
+            display: inline-block;
+            width:25px;
+            height:30px;
+            text-align: center;
+            line-height:30px;
+            color: #ccc;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+        }
+        #left{
+            float: left;
+        }
+        #right{
+            float: right;
+        }
+        .photo ol{
+            position: absolute;
+            right:30px;
+            bottom:10px;
+        }
+        .photo ol li{
+            width:15px;
+            height: 15px;
+            display:inline-block;
+            line-height: 15px;
+            text-align: center;
+            background-color: #fff;
+            cursor: pointer;
+        }
+        .photo ol .current {
+            background-color: orange;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div id="box" class="all">
+        <div class="photo">
+            <ul>
+                <li><a href="#"><img src="1.png" alt=""></a></li>
+                <li><a href="#"><img src="2.png" alt=""></a></li>
+                <li><a href="#"><img src="3.png" alt=""></a></li>
+                <li><a href="#"><img src="4.png" alt=""></a></li>
+            </ul>
+            <ol>
+               
+            </ol>
+        </div>
+        <div id="arr" class="focusD">
+            <span id="left">&lt</span>
+            <span id="right">&gt</span>
+        </div>
+        
+    </div>
+       
+</body>
+<script>
+    var index=0;
+    var box = document.getElementById("box");
+    var photo = box.children[0];
+    var imgWidth = photo.offsetWidth;
+    var ul = photo.children[0];
+    var list = ul.children;
+    var ol = photo.children[1];
+    console.log(ol);
+
+    for(let i=0;i<list.length;i++){
+        var liObjs = document.createElement("li");
+        ol.appendChild(liObjs);
+        liObjs.innerHTML=(i+1);
+        liObjs.setAttribute("index", i);
+        liObjs.onmouseover = function () {
+        //先干掉所有背景颜色
+        for (var j = 0; j < ol.children.length; j++) {
+        ol.children[j].removeAttribute("class");
+        }
+        //设置当前鼠标进来的类样式
+        this.className = "current";
+        //获取ol中li的索引值
+        index = this.getAttribute("index");
+        //移动ul
+        animate(ul, -index * imgWidth); //移动动画函数
+        };
+    }
+    //设置第一个ol中li的背景颜色
+    ol.children[0].className = "current";
+    //克隆ul中第一个li放到最后一个
+    ul.appendChild(ul.children[0].cloneNode(true));
+
+
+    function animate(element, target) {
+    clearInterval(element.timeId);
+    element.timeId = setInterval(function () {
+     var current = element.offsetLeft;
+     var step = 9;
+     step = current > target ? -step : step;
+     current += step;
+     if (Math.abs(target - current) > Math.abs(step)) {
+     element.style.left = current + "px";
+     } else {
+     clearInterval(element.timeId);
+     element.style.left = target + "px";
+     }
+    }, 10);
+    }
+</script>
+</html>

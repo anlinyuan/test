@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .HolyGrail{
+        display:flex;
+        min-height:100vh;
+        flex-direction: column;
+    }
+    header ,footer{
+        flex:0 0 20px;
+        background-color: brown;
+    }
+    .HolyGrail-body{
+        display:flex;
+        flex:1;
+    }
+    .HolyGrail-main{
+        flex:1;
+        background-color: rgb(15, 163, 77);
+    }
+    .HolyGrail-nav,.HolyGrail-aside{
+        flex:0 0 12em;
+        background-color: cornflowerblue;
+    }
+    .HolyGrail-nav{
+        order:-1;
+    }
+</style>
+<body>
+    <div class="HolyGrail">
+        <header>...</header>
+        <div class="HolyGrail-body">
+            <main class="HolyGrail-main"></main>
+            <nav class="HolyGrail-nav"></nav>
+            <aside class="HolyGrail-aside"></aside>
+        </div>
+        <footer>...</footer>
+    </div>
+</body>
+<script>
+</script>
+</html>

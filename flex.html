@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        /* .box{
+            width:900px;
+            height: 900px;
+            background-color: cadetblue;
+        } */
+        .item{
+            position: absolute;
+            width:300px;
+            height:300px;
+            background-color: blue;
+        }
+        /* 上层左边 */
+        /* .box{
+            display:flex;
+        } */
+
+        /* 上层中间 */
+        /* .box{
+            display: flex;
+            justify-content: center;
+        } */
+
+        /* 上层右边 */
+        /* .box{
+            display:flex;
+            justify-content:flex-end;
+        } */
+
+        /* 中层左边 */
+        /* .box{
+            display:flex;
+            align-items:center;
+        } */
+
+        /* 中层中间 */
+        /* .box{
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        } */
+
+        /* 中层右边 */
+        /* .box{
+            display:flex;
+            justify-content:flex-end;
+            align-items:center;
+        } */
+
+        /* 下层左边 */
+        /* .box{
+            display:flex;
+            align-items:flex-end;
+        } */
+
+        /* 下层中间 */
+        /* .box{
+            display:flex;
+            align-items:flex-end;
+            justify-content:center;
+        } */
+
+        /* 下层右边 */
+        /* .box{
+            display:flex;
+            align-items:flex-end;
+            justify-content:flex-end;
+        } */
+
+        /* 双项目 */
+        /* 上层左边右边 */
+        /* .box{
+            display:flex;
+            justify-content:space-between;
+        } */
+
+        /* 左边上下 */
+        /* .box{
+            display:flex;
+            justify-content:space-between;
+            flex-direction:column;
+        } */
+
+        /* 中间上下 */
+        /* .box{
+            display:flex;
+            justify-content:space-between;
+            flex-direction:column;
+            align-items:center;
+        } */
+
+        /* 右边上下 */
+        /* .box{
+            display:flex;
+            justify-content:space-between;
+            flex-direction:column;
+            align-items:flex-end;
+            
+        } */
+        /* （1，1）（2，2） */
+        /* .box{
+            display:flex;
+        }
+        .item:nth-child(2){
+            align-self: center;
+        } */
+        /* （1，1）（3，3） */
+        /* .box{
+            display:flex;
+            justify-content: space-between;
+        }
+        .item:nth-child(2){
+            align-self:flex-end;
+        } */
+        /* 四项目，11，12，13，33 */
+        /* .box{
+            display:flex;
+            flex-wrap:wrap;
+            justify-content:flex-end;
+            align-content: space-between;
+        } */
+        /* 四项目，四个角 */
+
+        /* .box {
+        display: flex;
+        flex-wrap: wrap;
+        } */
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div id="ani" class="item"></div>
+        <!-- <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span> -->
+        <!-- <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span> -->
+    </div>
+</body>
+<script>
+    let ani = document.getElementById("ani");
+    const dis = 1500;
+    const timeCount = 3000;
+    function handler(time){
+        if(time>timeCount){
+            time = timeCount;
+        }
+        let newDis = time*dis/timeCount;
+        ani.style.left = newDis+"px";
+        if(newDis<1500){
+            window.requestAnimationFrame(handler);
+        }
+    }
+    window.requestAnimationFrame(handler);
+// function debounce(fn,interval=300){
+//     let timer = null;
+//     return function(){
+//         if(timer){
+//         	clearTimeout(timer);
+//             //进入该分支语句，说明当前正在一个计时过程中，并且又触发了相同事件。
+//             //所以要取消当前的计时，重新开始计时
+//         }
+//         timer = setTimeout(()=>{
+//             fn.call(this,arguments);
+//         },interval);
+//     };
+// }
+// function showTop  () {
+//     let box = document.getElementsByClassName('box')[0];
+//     var clientHeight = box.clientHeight ;
+//     console.log('clientHeight：' + box.getBoundingClientRect().top);
+// }
+// window.onscroll  = debounce(showTop,300);
+</script>
+</html>
